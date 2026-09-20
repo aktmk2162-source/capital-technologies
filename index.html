@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="株式会社キャピタル＆テクノロジーズは、経営戦略の立案から新規事業の立ち上げ、組織と技術の実装までを支援する経営コンサルティング会社です。">
+<meta name="format-detection" content="telephone=no">
+<!--A-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<title>キャピタル＆テクノロジーズ</title>
+<style>
+/* ------------------------------------------------------------------
+   株式会社キャピタル＆テクノロジーズ コーポレートサイト
+   配色の考え方：Capital（資本）＝銅、Technologies（技術）＝深紺の格子
+   単一テーマ（ダーク）で確定。全色をトークンで明示指定する。
+   ------------------------------------------------------------------ */
+:root{
+  --ground:#070B14;
+  --ground-2:#0B1120;
+  --surface:#0E1524;
+  --surface-2:#121B2E;
+  --line:#1E2940;
+  --line-strong:#2C3A58;
+  --text:#EAEEF7;
+  --text-2:#B6C1D6;
+  --muted:#8291AF;
+  --accent:#E0A356;
+  --accent-soft:#F2C489;
+  --accent-dim:rgba(224,163,86,.14);
+  --lattice:#24406B;
+
+  --wrap:1120px;
+  --gutter:20px;
+
+  --f-jp:"Zen Kaku Gothic New","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
+  --f-lat:"Archivo","Zen Kaku Gothic New",system-ui,sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--text);
+  font-family:var(--f-jp);
+  font-size:16px;
+  line-height:1.9;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+
+img{max-width:100%;}
+a{color:inherit;}
+[hidden]{display:none !important;}
+
+:focus-visible{
+  outline:2px solid var(--accent-soft);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+/* ---------- 共通レイアウト ---------- */
+.wrap{
+  width:100%;
+  max-width:var(--wrap);
+  margin-inline:auto;
+  padding-inline:var(--gutter);
+}
+
+.band{padding-block:clamp(64px,9vw,120px);}
+.band--tint{background:var(--ground-2);border-block:1px solid var(--line);}
+
+.eyebrow{
+  font-family:var(--f-lat);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 18px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.eyebrow::after{
+  content:"";
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,var(--line-strong),transparent);
+}
+
+h2.sec-title{
+  font-size:clamp(26px,3.6vw,40px);
+  font-weight:900;
+  line-height:1.4;
+  letter-spacing:.01em;
+  margin:0 0 20px;
+  text-wrap:balance;
+}
+.sec-lead{
+  margin:0;
+  max-width:62ch;
+  color:var(--text-2);
+  font-size:15.5px;
+}
+
+/* ---------- ヘッダー ---------- */
+.site-head{
+  position:sticky;
+  top:env(safe-area-inset-top,0px);
+  z-index:40;
+  background:rgba(7,11,20,.82);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.site-head .wrap{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  min-height:64px;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  min-width:0;
+  text-decoration:none;
+  font-family:var(--f-lat);
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--text);
+  white-space:nowrap;
+}
+.brand .mark{
+  width:22px;height:22px;
+  flex:none;
+  display:block;
+}
+.nav{
+  display:flex;
+  align-items:center;
+  gap:26px;
+  font-size:13.5px;
+  font-weight:500;
+}
+.nav a{
+  text-decoration:none;
+  color:var(--text-2);
+  transition:color .2s ease;
+  padding-block:4px;
+}
+.nav a:hover{color:var(--accent-soft);}
+.nav .nav-cta{
+  color:var(--ground);
+  background:var(--accent);
+  padding:8px 18px;
+  border-radius:2px;
+  font-weight:700;
+  white-space:nowrap;
+  flex:none;
+  transition:background .2s ease;
+}
+.nav .nav-cta:hover{background:var(--accent-soft);color:var(--ground);}
+@media (max-width:860px){
+  .nav .nav-link{display:none;}
+}
+/* 狭い画面ではロゴを小さくし、CTAを1行に収める */
+@media (max-width:560px){
+  :root{--gutter:16px;}
+  .brand{font-size:10.5px;letter-spacing:.09em;gap:8px;}
+  .brand .mark{width:19px;height:19px;}
+  .nav .nav-cta{padding:8px 13px;font-size:12.5px;}
+}
+
+/* ---------- ヒーロー ---------- */
+.hero{
+  position:relative;
+  isolation:isolate;
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+#lattice{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:-2;
+  display:block;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    radial-gradient(120% 90% at 78% 18%, rgba(224,163,86,.10), transparent 58%),
+    linear-gradient(180deg, rgba(7,11,20,.20) 0%, rgba(7,11,20,.72) 72%, var(--ground) 100%);
+  pointer-events:none;
+}
+.hero .wrap{
+  padding-block:clamp(72px,11vw,132px);
+  min-height:clamp(440px,62vh,620px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.hero-eyebrow{
+  font-family:var(--f-lat);
+  font-size:11.5px;
+  font-weight:600;
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin:0 0 26px;
+}
+.hero h1{
+  font-size:clamp(38px,7.4vw,76px);
+  font-weight:900;
+  line-height:1.24;
+  letter-spacing:.005em;
+  margin:0 0 28px;
+  max-width:16em;
+  text-wrap:balance;
+}
+.hero h1 .lift{
+  color:var(--accent-soft);
+}
+/* 狭い画面では語の途中で折り返さないよう、読点で改行する */
+.br-sp{display:none;}
+@media (max-width:560px){
+  .br-sp{display:inline;}
+}
+.hero-lead{
+  margin:0 0 38px;
+  max-width:46ch;
+  font-size:clamp(15px,1.4vw,17px);
+  line-height:2.05;
+  color:var(--text-2);
+}
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 28px;
+  border-radius:2px;
+  text-decoration:none;
+  font-weight:700;
+  font-size:14.5px;
+  border:1px solid transparent;
+  transition:background .2s ease,border-color .2s ease,color .2s ease;
+}
+.btn--primary{background:var(--accent);color:var(--ground);}
+.btn--primary:hover{background:var(--accent-soft);}
+.btn--ghost{border-color:var(--line-strong);color:var(--text);}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent-soft);}
+.btn .arw{font-family:var(--f-lat);font-weight:600;}
+
+/* ---------- ヴィジョン ---------- */
+.vision-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:clamp(32px,5vw,72px);
+  align-items:start;
+}
+.vision-statement{
+  font-size:clamp(24px,3.3vw,38px);
+  font-weight:900;
+  line-height:1.55;
+  margin:0;
+  text-wrap:balance;
+}
+.vision-statement .rule{
+  display:block;
+  width:56px;
+  height:3px;
+  background:var(--accent);
+  margin-bottom:28px;
+}
+.vision-body p{
+  margin:0 0 20px;
+  color:var(--text-2);
+  font-size:15.5px;
+}
+.vision-body p:last-child{margin-bottom:0;}
+@media (max-width:820px){
+  .vision-grid{grid-template-columns:1fr;}
+}
+
+/* ---------- サービス ---------- */
+.svc-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:1px;
+  background:var(--line);
+  border:1px solid var(--line);
+  margin-top:48px;
+}
+.svc{
+  background:var(--surface);
+  padding:34px 30px 36px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  position:relative;
+  transition:background .25s ease;
+}
+.svc::before{
+  content:"";
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:var(--accent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .3s ease;
+}
+.svc:hover{background:var(--surface-2);}
+.svc:hover::before{transform:scaleX(1);}
+.svc .idx{
+  font-family:var(--f-lat);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.2em;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.svc h3{
+  margin:0;
+  font-size:18.5px;
+  font-weight:700;
+  line-height:1.6;
+  letter-spacing:.01em;
+}
+.svc p{
+  margin:0;
+  font-size:14.5px;
+  line-height:1.95;
+  color:var(--text-2);
+}
+@media (max-width:920px){
+  .svc-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media (max-width:620px){
+  .svc-grid{grid-template-columns:1fr;}
+}
+
+.legal-note{
+  margin:28px 0 0;
+  padding:18px 22px;
+  border-left:2px solid var(--line-strong);
+  background:var(--surface);
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.95;
+}
+
+/* ---------- アプローチ ---------- */
+.steps{
+  list-style:none;
+  margin:48px 0 0;
+  padding:0;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(24px,3.5vw,48px);
+  counter-reset:step;
+}
+.steps li{
+  position:relative;
+  padding-top:26px;
+  border-top:1px solid var(--line-strong);
+}
+.steps .num{
+  font-family:var(--f-lat);
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:.2em;
+  color:var(--accent);
+  font-variant-numeric:tabular-nums;
+  display:block;
+  margin-bottom:14px;
+}
+.steps h3{
+  margin:0 0 12px;
+  font-size:19px;
+  font-weight:700;
+}
+.steps p{
+  margin:0;
+  font-size:14.5px;
+  color:var(--text-2);
+  line-height:1.95;
+}
+@media (max-width:820px){
+  .steps{grid-template-columns:1fr;}
+}
+
+/* ---------- 会社概要 ---------- */
+.about-grid{
+  display:grid;
+  grid-template-columns:minmax(0,.85fr) minmax(0,1.3fr);
+  gap:clamp(32px,5vw,72px);
+  align-items:start;
+}
+.profile{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14.5px;
+}
+.profile th,.profile td{
+  text-align:left;
+  vertical-align:top;
+  padding:17px 0;
+  border-bottom:1px solid var(--line);
+  line-height:1.85;
+}
+.profile th{
+  width:8.5em;
+  font-weight:500;
+  color:var(--muted);
+  white-space:nowrap;
+  padding-right:20px;
+}
+.profile td{color:var(--text);}
+.profile tr:first-child th,.profile tr:first-child td{padding-top:0;}
+.todo{
+  color:var(--accent-soft);
+  background:var(--accent-dim);
+  padding:2px 8px;
+  border-radius:2px;
+  font-size:13px;
+}
+@media (max-width:820px){
+  .about-grid{grid-template-columns:1fr;}
+  .profile th{width:7em;}
+}
+
+/* ---------- お問い合わせ ---------- */
+.contact{
+  background:var(--surface);
+  border:1px solid var(--line-strong);
+  padding:clamp(36px,5vw,60px);
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+}
+.contact h2{
+  margin:0 0 12px;
+  font-size:clamp(22px,3vw,32px);
+  font-weight:900;
+  line-height:1.5;
+}
+.contact p{
+  margin:0;
+  color:var(--text-2);
+  font-size:14.5px;
+  max-width:44ch;
+}
+.contact .mailrow{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:flex-start;
+}
+.mail-label{
+  font-family:var(--f-lat);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ---------- フッター ---------- */
+.site-foot{
+  border-top:1px solid var(--line);
+  margin-top:clamp(64px,9vw,110px);
+  padding-block:36px;
+  background:var(--ground-2);
+}
+.site-foot .wrap{
+  display:flex;
+  flex-wrap:wrap;
+  gap:16px 32px;
+  align-items:center;
+  justify-content:space-between;
+}
+.site-foot .copy{
+  font-size:12.5px;
+  color:var(--muted);
+  margin:0;
+}
+.site-foot .addr{
+  font-size:12.5px;
+  color:var(--muted);
+  margin:0;
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;}
+}
+</style>
+<!--/H-->
+</head>
+<body>
+<!--B-->
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="4"  r="2.1" fill="#E0A356"></circle>
+        <circle cx="4"  cy="17" r="2.1" fill="#EAEEF7"></circle>
+        <circle cx="20" cy="17" r="2.1" fill="#EAEEF7"></circle>
+        <path d="M12 4 L4 17 M12 4 L20 17 M4 17 L20 17" stroke="#2C3A58" stroke-width="1.2" fill="none"></path>
+      </svg>
+      Capital &amp; Technologies
+    </a>
+    <nav class="nav" aria-label="サイト内ナビゲーション">
+      <a class="nav-link" href="#vision">理念</a>
+      <a class="nav-link" href="#services">事業内容</a>
+      <a class="nav-link" href="#approach">進め方</a>
+      <a class="nav-link" href="#about">会社概要</a>
+      <a class="nav-cta" href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== ヒーロー ===== -->
+  <section class="hero">
+    <canvas id="lattice" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <p class="hero-eyebrow">Capital &amp; Technologies</p>
+      <h1>知能を、<br class="br-sp"><span class="lift">経営の力に。</span></h1>
+      <p class="hero-lead">
+        株式会社キャピタル＆テクノロジーズは、経営戦略の立案から新規事業の立ち上げ、
+        組織と技術の実装までを一貫して支援する経営コンサルティング会社です。
+        判断の速度を上げることに、すべての仕事を向けています。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn--primary" href="#contact">ご相談はこちら <span class="arw" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="#services">事業内容を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 理念 ===== -->
+  <section class="band" id="vision">
+    <div class="wrap">
+      <p class="eyebrow">Vision</p>
+      <div class="vision-grid">
+        <p class="vision-statement">
+          <span class="rule" aria-hidden="true"></span>
+          技術は、意思決定の<br>速度を変える。
+        </p>
+        <div class="vision-body">
+          <p>
+            経営の成否を分けるのは、判断の質そのものよりも、判断に至るまでの時間であることが少なくありません。
+            必要な事実が揃わないまま議論が重ねられ、決めるべき時機を逃す。私たちが最も多く立ち会ってきたのは、この種の停滞です。
+          </p>
+          <p>
+            人工知能をはじめとする技術は、この停滞をほどく道具になります。
+            散らばった数値を一つの盤面に載せ、選択肢とその帰結を並べて見せる。そこまでを速くできれば、経営者は本来の仕事に戻れます。
+          </p>
+          <p>
+            私たちは、技術を導入すること自体を目的にしません。
+            経営者が自分の言葉で判断を語れる状態まで持っていくことを、仕事の終点と考えています。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 事業内容 ===== -->
+  <section class="band band--tint" id="services">
+    <div class="wrap">
+      <p class="eyebrow">Services</p>
+      <h2 class="sec-title">事業内容</h2>
+      <p class="sec-lead">
+        戦略の立案だけで終わらせず、組織と数字が実際に動くところまでを支援の範囲としています。
+      </p>
+
+      <div class="svc-grid">
+        <article class="svc">
+          <span class="idx">01</span>
+          <h3>経営戦略・中期経営計画の策定支援</h3>
+          <p>現状の事業構造と収益性を分解したうえで、3〜5年の道筋を描きます。抽象的な方針ではなく、部門ごとの行動と数値目標へ落とし込みます。</p>
+        </article>
+        <article class="svc">
+          <span class="idx">02</span>
+          <h3>新規事業開発・事業性評価</h3>
+          <p>市場性・採算・法令適合の3点で候補を見極めます。参入の是非を判断するに足る材料を揃え、撤退の基準まで含めて設計します。</p>
+        </article>
+        <article class="svc">
+          <span class="idx">03</span>
+          <h3>組織改革・人事制度の設計支援</h3>
+          <p>権限配分と評価制度を見直し、決めた戦略が現場で動く構造へ整えます。制度の文言だけでなく、運用の負荷まで見て設計します。</p>
+        </article>
+        <article class="svc">
+          <span class="idx">04</span>
+          <h3>DX・AI活用の導入支援</h3>
+          <p>業務の棚卸しから始め、生成AIを含む技術の選定、試験導入、社内定着までを伴走します。効果が測れない施策は採用しません。</p>
+        </article>
+        <article class="svc">
+          <span class="idx">05</span>
+          <h3>資本政策・財務戦略の整理</h3>
+          <p>資本構成と資金調達の選択肢を整理し、金融機関や株主との対話に耐える説明資料をつくります。事業計画と資金繰りを一つの数字で結びます。</p>
+        </article>
+        <article class="svc">
+          <span class="idx">06</span>
+          <h3>業務提携・アライアンスの支援</h3>
+          <p>提携候補の探索と条件の整理を通じて、交渉の土台をつくります。提携によって何が増え、何を手放すのかを事前に可視化します。</p>
+        </article>
+      </div>
+
+      <p class="legal-note">
+        当社は金融商品取引業者ではありません。有価証券の価値等に関する投資助言、および有価証券の売買の媒介・代理は行いません。
+        また、有料職業紹介事業および労働者派遣事業は行いません。いずれの業務も、経営全般に関する助言および資料作成の支援として提供するものです。
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== 進め方 ===== -->
+  <section class="band" id="approach">
+    <div class="wrap">
+      <p class="eyebrow">Approach</p>
+      <h2 class="sec-title">3つの段階で進めます</h2>
+      <p class="sec-lead">
+        順序には意味があります。事実を揃える前に設計へ進むと、後工程でほぼ必ず手戻りが生じるためです。
+      </p>
+
+      <ol class="steps">
+        <li>
+          <span class="num">Step 01</span>
+          <h3>把握 ─ 事実と数値を揃える</h3>
+          <p>既存の資料、会計数値、現場へのヒアリングから、判断の前提となる事実を集めます。推測と事実を分けて記録し、不明な点は不明のまま残します。</p>
+        </li>
+        <li>
+          <span class="num">Step 02</span>
+          <h3>設計 ─ 選択肢と判断基準を決める</h3>
+          <p>取り得る選択肢を並べ、それぞれの帰結を数字で示します。同時に「何をもって選ぶか」の基準を先に定め、議論が印象論に流れることを防ぎます。</p>
+        </li>
+        <li>
+          <span class="num">Step 03</span>
+          <h3>実装 ─ 実行に伴走し、成果を測る</h3>
+          <p>決めた施策を現場へ落とし、定めた指標で効果を測ります。想定と異なれば、早い段階で計画そのものを組み替えます。</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===== 会社概要 ===== -->
+  <section class="band band--tint" id="about">
+    <div class="wrap">
+      <p class="eyebrow">Company</p>
+      <div class="about-grid">
+        <div>
+          <h2 class="sec-title">会社概要</h2>
+          <p class="sec-lead">
+            千葉県野田市に本店を置き、2021年10月に設立しました。
+          </p>
+        </div>
+        <table class="profile">
+          <tbody>
+            <tr><th scope="row">商号</th><td>株式会社キャピタル＆テクノロジーズ</td></tr>
+            <tr><th scope="row">所在地</th><td>千葉県野田市木間ケ瀬671-2</td></tr>
+            <tr><th scope="row">設立</th><td>2021年10月</td></tr>
+            <tr><th scope="row">資本金</th><td>1,000千円</td></tr>
+            <tr><th scope="row">代表者</th><td>代表取締役　成島　正枝</td></tr>
+            <tr><th scope="row">事業内容</th><td><span class="todo">要ご提供</span>　登記事項証明書の「目的」欄より転記します。</td></tr>
+            <tr><th scope="row">連絡先</th><td><a href="mailto:akiokitano2162@gmail.com">akiokitano2162@gmail.com</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== お問い合わせ ===== -->
+  <section class="band" id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>ご相談を承ります</h2>
+          <p>
+            経営課題の整理からでも構いません。現在お困りの状況をお聞かせいただければ、
+            初回のご相談にて論点の整理までを無償で行います。
+          </p>
+        </div>
+        <div class="mailrow">
+          <span class="mail-label">Contact</span>
+          <a class="btn btn--primary" href="mailto:akiokitano2162@gmail.com?subject=%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">
+            akiokitano2162@gmail.com <span class="arw" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p class="copy">&copy; 2026 株式会社キャピタル＆テクノロジーズ</p>
+    <p class="addr">千葉県野田市木間ケ瀬671-2</p>
+  </div>
+</footer>
+
+<script>
+/* ヒーロー背景：ニューラル格子。写真素材を使わず、すべてコードで描画します。 */
+(function () {
+  var cv = document.getElementById('lattice');
+  if (!cv || !cv.getContext) { return; }
+  var ctx = cv.getContext('2d');
+  var host = cv.parentNode;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var nodes = [], W = 0, H = 0, dpr = 1, raf = null;
+  var LINK = 148;           // この距離まで線を引く
+  var COL_LINE = '36,64,107';
+  var COL_NODE = '138,152,180';
+  var COL_HOT  = '224,163,86';
+
+  function build() {
+    var rect = host.getBoundingClientRect();
+    W = Math.max(1, Math.round(rect.width));
+    H = Math.max(1, Math.round(rect.height));
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = W * dpr;
+    cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    var count = Math.round(Math.min(110, Math.max(34, (W * H) / 13000)));
+    nodes = [];
+    for (var i = 0; i < count; i++) {
+      nodes.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.22,
+        vy: (Math.random() - 0.5) * 0.22,
+        r: Math.random() < 0.12 ? 2.2 : 1.2,
+        hot: Math.random() < 0.12,
+        ph: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+
+    for (var i = 0; i < nodes.length; i++) {
+      var a = nodes[i];
+      for (var j = i + 1; j < nodes.length; j++) {
+        var b = nodes[j];
+        var dx = a.x - b.x, dy = a.y - b.y;
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < LINK) {
+          ctx.strokeStyle = 'rgba(' + COL_LINE + ',' + (0.55 * (1 - d / LINK)).toFixed(3) + ')';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (var k = 0; k < nodes.length; k++) {
+      var n = nodes[k];
+      var pulse = n.hot ? 0.55 + 0.45 * Math.sin(t / 900 + n.ph) : 0.42;
+      ctx.fillStyle = 'rgba(' + (n.hot ? COL_HOT : COL_NODE) + ',' + pulse.toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function step(t) {
+    for (var i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < -20) { n.x = W + 20; }
+      if (n.x > W + 20) { n.x = -20; }
+      if (n.y < -20) { n.y = H + 20; }
+      if (n.y > H + 20) { n.y = -20; }
+    }
+    draw(t);
+    raf = window.requestAnimationFrame(step);
+  }
+
+  function start() {
+    build();
+    if (raf) { window.cancelAnimationFrame(raf); raf = null; }
+    if (reduce) { draw(0); } else { raf = window.requestAnimationFrame(step); }
+  }
+
+  var tm = null;
+  window.addEventListener('resize', function () {
+    window.clearTimeout(tm);
+    tm = window.setTimeout(start, 180);
+  });
+
+  start();
+}());
+
+/* アンカーリンクのスムーススクロール（固定ヘッダー分を差し引く） */
+(function () {
+  var head = document.querySelector('.site-head');
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) { return; }
+    var id = a.getAttribute('href');
+    if (!id || id === '#') { return; }
+    var target = document.querySelector(id);
+    if (!target) { return; }
+    e.preventDefault();
+    var off = head ? head.offsetHeight : 0;
+    var y = target.getBoundingClientRect().top + window.pageYOffset - off + 1;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+  });
+}());
+</script>
+<!--/A-->
+</body>
+</html>
