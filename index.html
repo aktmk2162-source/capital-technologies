@@ -299,6 +299,15 @@ h2.sec-title{
 .btn--ghost:hover{border-color:var(--accent);color:var(--accent-soft);}
 .btn .arw{font-family:var(--f-lat);font-weight:600;}
 
+/* ---------- ブランドムービー ---------- */
+.brand-film{padding-block:clamp(40px,6vw,72px);border-top:1px solid var(--line);}
+.brand-film .sec-lead{margin-bottom:28px;}
+.film-frame{margin:0;border:1px solid var(--line-strong);background:#050911;box-shadow:0 24px 72px rgba(0,0,0,.28);}
+.film-frame video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:#050911;}
+.film-caption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;padding:16px 20px;color:var(--text-2);font-size:13px;border-top:1px solid var(--line);}
+.film-caption span:last-child{font-family:var(--f-lat);color:var(--accent);font-size:11px;letter-spacing:.14em;}
+#brand-film{scroll-margin-top:100px;}
+
 /* ---------- ヴィジョン ---------- */
 .vision-grid{
   display:grid;
@@ -578,8 +587,31 @@ h2.sec-title{
       </p>
       <div class="hero-actions">
         <a class="btn btn--primary" href="#contact">ご相談はこちら <span class="arw" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="#brand-film">ブランドムービーを見る <span aria-hidden="true">▷</span></a>
         <a class="btn btn--ghost" href="#services">事業内容を見る</a>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== ブランドムービー ===== -->
+  <section class="brand-film" id="brand-film" aria-labelledby="film-title">
+    <div class="wrap">
+      <p class="eyebrow">Brand Film</p>
+      <h2 class="sec-title" id="film-title">金融と経営、テクノロジーとAIを、一つに。</h2>
+      <p class="sec-lead" id="film-description">資本・財務戦略から経営改革、AIの実装へ。私たちの考え方を、60秒の映像でご紹介します。</p>
+      <figure class="film-frame">
+        <video controls playsinline preload="none" width="1920" height="1080"
+          poster="assets/ct-brand-film-20260928.jpg"
+          aria-label="キャピタル＆テクノロジーズ ブランドムービー（60秒・音楽付き）"
+          aria-describedby="film-description film-caption">
+          <source src="assets/ct-brand-film-20260928.mp4" type="video/mp4">
+          お使いのブラウザーでは動画を再生できません。<a href="assets/ct-brand-film-20260928.mp4">ブランドムービーを開く</a>
+        </video>
+        <figcaption class="film-caption" id="film-caption">
+          <span>知能を、経営の力に。</span>
+          <span>60 SECONDS / MUSIC ON</span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
